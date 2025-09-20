@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Professional Portfolio Design System */
+
+@layer base {
+  :root {
+    /* Brand Colors - Modern Tech Portfolio */
+    --primary: 214 89% 52%; /* #1a73e8 - Tech Blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 214 89% 65%;
+    --primary-dark: 214 89% 35%;
+    
+    --secondary: 137 66% 42%; /* #34a853 - Success Green */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 137 66% 55%;
+    
+    /* Neutral Palette */
+    --background: 0 0% 98%; /* #f8f9fa */
+    --foreground: 210 8% 14%; /* #202124 */
+    --surface: 0 0% 100%;
+    --surface-alt: 210 16% 96%;
+    
+    /* Semantic Colors */
+    --muted: 210 16% 93%;
+    --muted-foreground: 210 8% 46%;
+    --border: 210 16% 90%;
+    --input: 210 16% 90%;
+    --ring: 214 89% 52%;
+    
+    /* Card System */
+    --card: 0 0% 100%;
+    --card-foreground: 210 8% 14%;
+    --card-border: 210 16% 93%;
+    
+    /* Interactive Elements */
+    --accent: 214 89% 52%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Tech Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 89% 52%), hsl(214 89% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(137 66% 42%), hsl(137 66% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(214 89% 52%) 0%, hsl(214 89% 35%) 50%, hsl(137 66% 42%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 16% 96%) 100%);
+    
+    /* Advanced Shadows */
+    --shadow-sm: 0 2px 4px -1px hsl(214 89% 52% / 0.1);
+    --shadow-md: 0 4px 12px -2px hsl(214 89% 52% / 0.15);
+    --shadow-lg: 0 20px 40px -12px hsl(214 89% 52% / 0.25);
+    --shadow-glow: 0 0 40px hsl(214 89% 52% / 0.3);
+    --shadow-tech: 0 8px 32px hsl(214 89% 52% / 0.12);
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --border-radius: 0.75rem;
+    --border-radius-lg: 1rem;
+    
+    /* Typography Scale */
+    --font-display: 'Montserrat', system-ui, sans-serif;
+    --font-body: 'Open Sans', system-ui, sans-serif;
+  }
+
+  .dark {
+    --background: 210 8% 14%;
+    --foreground: 0 0% 98%;
+    --surface: 210 8% 12%;
+    --surface-alt: 210 8% 16%;
+    
+    --muted: 210 8% 20%;
+    --muted-foreground: 210 8% 60%;
+    --border: 210 8% 20%;
+    --input: 210 8% 20%;
+    
+    --card: 210 8% 12%;
+    --card-foreground: 0 0% 98%;
+    --card-border: 210 8% 20%;
+    
+    --gradient-subtle: linear-gradient(180deg, hsl(210 8% 12%) 0%, hsl(210 8% 16%) 100%);
+    --shadow-tech: 0 8px 32px hsl(0 0% 0% / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .tech-card {
+    @apply bg-card border border-card-border rounded-lg p-6 transition-all duration-300;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .tech-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-tech);
+  }
+  
+  .skill-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20;
+    transition: var(--transition-smooth);
+  }
+  
+  .skill-badge:hover {
+    @apply bg-primary text-primary-foreground transform scale-105;
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-foreground mb-4;
+    font-family: var(--font-display);
+  }
+  
+  .project-link {
+    @apply relative inline-block text-primary font-medium;
+    transition: var(--transition-smooth);
+  }
+  
+  .project-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 origin-right;
+    transition: transform 0.3s ease;
+  }
+  
+  .project-link:hover::after {
+    @apply transform scale-x-100 origin-left;
+  }
+  
+  .floating-card {
+    @apply bg-card border border-card-border rounded-xl p-6;
+    animation: float 6s ease-in-out infinite;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .border-gradient {
+    border-image: var(--gradient-primary) 1;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
