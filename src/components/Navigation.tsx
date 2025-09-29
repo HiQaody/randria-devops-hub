@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Download, Mail, ExternalLink } from "lucide-react";
+import cv_path from "@/assets/CV_Jacquinot_RANDRIANOMENJANAHARY (1).pdf";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,6 +32,13 @@ const Navigation = () => {
     { label: "Contact", id: "contact" }
   ];
 
+  const handleDownloadCv = () => {
+    const link = document.createElement("a");
+    link.href = cv_path;
+    link.download = "CV_Jacquinot_RANDRIANOMENJANAHARY.pdf";
+    link.click();
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-md" : "bg-transparent"
@@ -41,7 +49,9 @@ const Navigation = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection("hero")}
-              className="text-xl font-bold text-gradient hover:scale-105 transition-transform"
+              className={`text-xl font-bold hover:scale-105 transition-all ${
+                scrolled ? "text-foreground" : "text-white"
+              }`}
             >
               JR
             </button>
@@ -54,7 +64,11 @@ const Navigation = () => {
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className="text-muted-foreground hover:text-primary transition-colors px-3 py-2 text-sm font-medium relative group"
+                  className={`transition-colors px-3 py-2 text-sm font-medium relative group ${
+                    scrolled 
+                      ? "text-muted-foreground hover:text-primary" 
+                      : "text-white/90 hover:text-white"
+                  }`}
                 >
                   {link.label}
                   <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -66,9 +80,14 @@ const Navigation = () => {
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Button
-              variant="outline"
+              variant={scrolled ? "outline" : "outline"}
               size="sm"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              className={`transition-all ${
+                scrolled
+                  ? "border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  : "border-white/30 text-gray hover:bg-white hover:text-primary"
+              }`}
+              onClick={handleDownloadCv}
             >
               <Download className="w-4 h-4 mr-2" />
               CV
@@ -76,7 +95,7 @@ const Navigation = () => {
             <Button
               size="sm"
               onClick={() => scrollToSection("contact")}
-              className="bg-primary hover:bg-primary-dark text-primary-foreground"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
               <Mail className="w-4 h-4 mr-2" />
               Contact
@@ -87,7 +106,11 @@ const Navigation = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-muted-foreground hover:text-primary p-2"
+              className={`p-2 transition-colors ${
+                scrolled 
+                  ? "text-muted-foreground hover:text-primary" 
+                  : "text-white/90 hover:text-white"
+              }`}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

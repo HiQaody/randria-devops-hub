@@ -5,13 +5,13 @@ const Footer = () => {
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-5 h-5" />,
-      href: "#",
+      href: "https://www.linkedin.com/in/jacquinot-randrianomenjanahary",
       color: "hover:text-blue-600"
     },
     {
       name: "GitHub", 
       icon: <Github className="w-5 h-5" />,
-      href: "#",
+      href: "https://github.com/HiQaody",
       color: "hover:text-gray-800"
     },
     {
@@ -19,12 +19,6 @@ const Footer = () => {
       icon: <Mail className="w-5 h-5" />,
       href: "mailto:randrianomenjanaharyjacquinot@gmail.com",
       color: "hover:text-primary"
-    },
-    {
-      name: "Portfolio",
-      icon: <ExternalLink className="w-5 h-5" />,
-      href: "#",
-      color: "hover:text-secondary"
     }
   ];
 

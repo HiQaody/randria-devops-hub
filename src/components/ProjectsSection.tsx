@@ -9,7 +9,7 @@ const ProjectsSection = () => {
       title: "TisRadar - Plateforme de monitoring temps réel",
       period: "Octobre 2024 - Présent",
       status: "Production",
-      url: "https://tisradar.hiqaody.me",
+      url: "https://tisradar.emit.mg",
       description: "Visualisation de 10K+ points de données/minute en temps réel avec architecture microservices",
       challenge: "Visualiser 10K+ points de données/minute en temps réel",
       solution: "Architecture microservices avec WebSocket et cache Redis",
@@ -42,6 +42,7 @@ const ProjectsSection = () => {
       title: "Bibliothèque Numérique EMIT",
       period: "Juin 2024 - Septembre 2024",
       status: "Terminé",
+      url: "https://emilib.emit.mg",
       description: "Système complet de gestion documentaire avec 7 microservices",
       challenge: "Migration d'une architecture monolithique vers microservices",
       solution: "7 microservices Spring Boot/NextJS avec CI/CD Jenkins",
@@ -110,13 +111,9 @@ const ProjectsSection = () => {
                   
                   {project.url && (
                     <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                      <Button onClick={() => window.open(project.url, '_blank')} variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                         <ExternalLink className="w-4 h-4 mr-2" />
                         Demo
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Github className="w-4 h-4 mr-2" />
-                        Code
                       </Button>
                     </div>
                   )}
